@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+  position: absolute;
+  bottom: 0;
+}
+.attribution a { 
+  color: hsl(228, 45%, 44%); 
+}
+
+body{
+  background-color: hsl(216, 12%, 8%);
+  color: hsl(0, 100%, 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Overpass";
+}
+.rating{
+  width: 345px;
+  padding: 32px;
+  border-radius: 25px;
+  
+  background: radial-gradient(
+    /* Starting at Top Center (50% 0%) */
+    circle at 50% 0%,
+    hsl(213, 19%, 22%) 0%,   /* Step 1: Lightest (Top) */
+    hsl(213, 19%, 21%) 8%,   /* Step 2 */
+    hsl(213, 19%, 20%) 16%,  /* Step 3 */
+    hsl(213, 19%, 19%) 24%,  /* Step 4 */
+    hsl(213, 19%, 18%) 32%,  /* Step 5 (Original Grey 900) */
+    hsl(213, 19%, 17%) 40%,  /* Step 6 */
+    hsl(213, 19%, 16%) 48%,  /* Step 7 */
+    hsl(213, 19%, 15%) 56%,  /* Step 8 */
+    hsl(213, 19%, 14%) 64%,  /* Step 9 */
+    hsl(213, 19%, 13%) 72%,  /* Step 10 */
+    hsl(213, 19%, 12%) 80%,  /* Step 11 */
+    hsl(213, 19%, 11%) 88%,  /* Step 12 */
+    hsl(213, 19%, 10%) 100%  /* Step 13: Darkest (Corners) */
+  );
+  /* This give more details in card */
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+}
+
+.star{
+  height: 42px;
+  width: 42px;
+  background-color: hsl(213, 19%, 20%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#rating_card > h1{
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 30px;
+}
+#rating_card > p{
+  font-size: 15px;
+  color: hsl(217, 12%, 63%);
+  line-height: 24px;
+  font-weight: 400;
+}
+.rate_btn_holder{
+  display: flex;
+  justify-content: space-between;
+}
+.rate{
+  width: 51px;
+  height: 51px;
+  background-color: hsl(213, 19%, 20%);
+  color: hsl(217, 12%, 63%);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+}
+.rate:not(.active):Hover{
+  background-color: hsl(0, 100%, 100%);
+  color: hsl(216, 12%, 8%);
+}
+.active{
+  background-color: hsl(25, 97%, 53%);
+  color: hsl(216, 12%, 8%);
+}
+.submit_btn{
+  width: 100%;
+  height: 45px;
+  color: hsl(216, 12%, 8%);
+  background-color: hsl(25, 97%, 53%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-top: 32px;
+  border: none;
+  border-radius: 25px;
+}
+.submit_btn:active{
+  background-color: hsl(0, 100%, 100%)
+}
+
+#thank_you_card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.thank_you_image{
+  height: 96px;
+  width: 144px;
+}
+#thank_you_card > h3{
+  color: hsl(25, 97%, 53%);
+  font-size: 14px;
+  font-weight: 400;
+  background-color: hsl(213, 19%, 20%);
+  padding: 8px 20px;
+  margin-top: 32px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#thank_you_card > h2{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+#thank_you_card > p{
+  color: hsl(217, 12%, 63%);
+  font-size: 15px;
+  padding: 0 4px;
+  text-align: center;
+  margin-top: 6px;
+}
+#thank_you_card{
+  display: none;
+}
+
+@media screen and (max-width: 420px){
+  .rating{
+    width: 296px;
+    padding: 22px;
+    border-radius: 15px;
+  }
+  #thank_you_card > p{
+    padding: 0;
+  }
+  .star{
+    width: 36px;
+    height: 36px;
+  }
+  .star > img {
+    width: 15px;
+    height: 15px;
+  }
+  #rating_card > h1{
+    font-size: 24px;
+    margin-top: 24px;
+  }
+  #rating_card > p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .rate{
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+  .thank_you_image{
+    width: 126px;
+    height: 84px;
+  }
+  #rating_card > h3{
+    font-size: 14px;
+    padding: 4px 12px;
+    margin-top: 20px;
+  }
+  #rating_card > h2{
+    font-size: 24px;
+  }
+  #rating_card > p{
+    font-size: 14px;
+  }
+  
+  
+}
