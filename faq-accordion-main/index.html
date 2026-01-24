@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./src/output.css">
+  
+  <title>Frontend Mentor | FAQ accordion</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution{ 
+      font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body class=" bg-[hsl(275,100%,97%)] sm:bg-[url('/assets/images/background-pattern-desktop.svg')] bg-[url('/assets/images/background-pattern-mobile.svg')] bg-top bg-no-repeat bg-contain flex flex-col items-center h-screen font-work text-[hsl(292,42%,14%)]" >
+  <main>
+    <div class="bg-white p-6 sm:p-10 w-[90vw] sm:w-[600px] rounded sm:rounded-2x1 mt-32 sm:mt-40">
+      <div class="flex justify-start items-center gap-6 mb-[10px] sm:mb-[18px]">
+        <img src="/assets/images/icon-star.svg" alt="star image" class="inline-block h-[26px] w-[26px] object-contain object-center">
+        <h1 class="font-black text-3xl ">FAQs</h1>
+      </div>
+    <article>
+    <details class="group mb-0">
+      <summary>
+        <span role="term" class="">What is Frontend Mentor, and how will it help me?</span>
+        <div class="faqs_sing group-open:bg[url('/assets/images/icon-minus.svg')]"></div>
+      </summary>
+      <div role="definition" class="faqs_ans">
+        <p class="">
+          Frontend Mentor offers realistic coding challenges to help developers improve their 
+          frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for 
+          all levels and ideal for portfolio building.
+        </p>
+      </div>
+    </details>
+    <details class="group">
+      <summary>
+        <span role="term">Is Frontend Mentor free?</span>
+        <div class="faqs_sing"></div>
+      </summary>
+      <div role="definition" class="faqs_ans">
+        <p>
+          Yes, Frontend Mentor offers both free and premium coding challenges, with the free 
+          option providing access to a range of projects suitable for all skill levels.
+        </p>
+      </div>
+    </details>
+    <details class="group">
+      <summary>
+        <span role="term">Can I use Frontend Mentor projects in my portfolio?</span>
+        <div class="faqs_sing "></div>
+      </summary>
+      <div role="definition" class="faqs_ans">
+        <p>
+          Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
+          way to showcase your skills to potential employers!
+        </p>
+      </div>
+    </details>
+    <details class="border-none pb-0 group">
+      <summary>
+        <span role="term">How can I get help if I'm stuck on a Frontend Mentor challenge?</span>
+        <div class="faqs_sing"></div>
+      </summary>
+      <div role="definition" class="faqs_ans">
+        <p>
+          The best place to get help is inside Frontend Mentor's Discord community. There's a help 
+          channel where you can ask questions and seek support from other community members.
+        </p>
+      </div>
+    </details>
+    </article>
+  </div>
+  </main>
+  
+  <div class="attribution relative mt-auto">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script><script>eruda.init();</script>
+</body>
+</html>
+

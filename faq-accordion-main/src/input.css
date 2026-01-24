@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Normal (Regular/Bold/etc) */
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+@layer base {
+  /* For most modern browsers */
+  summary {
+    @apply [&::-webkit-details-marker]:hidden list-none  flex justify-between items-center 
+  }
+  details {
+    @apply overflow-hidden border-b border-solid border-[hsl(292,16%,92%)] py-[12px] sm:py-[20px] 
+  }
+  summary > span {
+    @apply text-[hsl(292,42%,14%)] text-[14px] font-[800] w-[80%] hover:text-[#AD28EB] sm:w-[95%] sm:text-[18px]
+  }
+  p{
+    @apply text-[hsl(292,16%,49%)] text-[12px] font-[400] pt-[8px] sm:text-[15px]
+  }
+}
+@layer components {
+  .faqs_sing{
+    @apply w-[30px] h-[30px] bg-cover bg-center bg-no-repeat bg-[url('/assets/images/icon-plus.svg')] 
+  }
+  .group[open] .faqs_sing {
+    @apply rotate-180 duration-300 bg-[url('/assets/images/icon-minus.svg')]
+  }
+  .faqs_ans{
+    @apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-300
+  }
+  .group[open] .faqs_ans {
+    @apply grid-rows-[1fr]
+  }
+}
