@@ -814,7 +814,7 @@ p {
   }
 
   .sm\:bg-\[url\(\'\/assets\/images\/background-pattern-desktop\.svg\'\)\] {
-    background-image: url('/assets/images/background-pattern-desktop.svg');
+    background-image: url('./assets/images/background-pattern-desktop.svg');
   }
 
   .sm\:p-10 {
