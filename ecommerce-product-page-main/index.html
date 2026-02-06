@@ -5,40 +5,235 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="Style.css">
   
   <title>Frontend Mentor | E-commerce product page</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    body{
+      background-color:white;
+    }
+    .attribution { font-size: 11px; text-align: center; margin-top: auto;}
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
 <body>
+  
+  <!--------header section -------->
+  
+  <header>
+    <div class="link_container">
+      <button class="menu_button" aria-label="menu" aria-expanded="false" aria-controls="main-nav">
+        <img src="./images/icon-menu.svg" width="16" height="15" alt="" class="menu_img">
+        <img src="./images/icon-close.svg" width="14" height="15" alt="" class="close_img">
+      </button>
+      <nav class="nav_wrapper" id="main-nav">
+        <ul class="link_wrapper">
+          <li>
+            <a class="nav_link" href="#">Collections</a>
+          </li>
+          <li>
+            <a class="nav_link" href="#">Men</a>
+          </li>
+          <li>
+            <a class="nav_link" href="#">Women</a>
+          </li>
+          <li>
+            <a class="nav_link" href="#">About</a>
+          </li>
+          <li>
+            <a class="nav_link" href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
 
-  Collections
-  Men
-  Women
-  About
-  Contact
-
-  Sneaker Company
-
-  Fall Limited Edition Sneakers
-
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
-
-  $125.00
-  50%
-  $250.00
-
-  0
-  Add to cart
+      <img src="./images/logo.svg" width="276" height="40" alt="Sneaker brand logo" class="brand_logo">
+    </div>
+    
+    
+    <!-------  space --------->
+    
+    
+    <div class="btn_container">
+      <button class="cart_btn" aria-expanded="false" aria-label="shopping cart" aria-controls="cart" aria-haspopup="dialog">
+        <span class="item_count_display"></span>
+        <img src="./images/icon-cart.svg" width="22" height="20" alt="cart" class="cart_img">
+      </button>
+      <button class="prof_btn" aria-label="view profile">
+        <img src="./images/image-avatar.png" width="50" height="50" alt="" class="avatar">
+      </button>
+    </div>
+  </header>
+  
+<!------------pop-up cart------------->
+  
+  
+  
+  <aside role="dialog" aria-label="shopping cart" class="cart_container " id="cart">
+    <div class="cart_text">
+      <h4>Cart</h4>
+    </div>
+    <div role="group" class="cart_product_container">
+      <div class="cart_product">
+      </div>
+      <button class="checkout_btn" >
+      Checkout
+      </button>
+    </div> 
+  </aside>
+  
+  <!------light box images----->
+  
+  <aside role="dialog" class="light_box_container" id="light_box">
+    <div class="li_box_pos">
+      <button aria-label="close" aria-expanded="false" aria-controls="light_box" class="light_button" id="li_close_btn">
+        <img src="./images/icon-close.svg" width="25" height="25" alt="">
+      </button>
+      <div class="li_main_img_container">
+        <img src="./images/image-product-1.jpg" width="550" height="550" alt="white and light-brown color sneaker" class="light_box_img" id="main_li_img">
+      
+        <button class="previous_li_btn li_change_img" aria-label="previous image" aria-controls="main_li_img">
+          <img src="./images/icon-previous.svg" height="18" width="12" alt="">
+        </button>
+        <button class="next_li_btn li_change_img" aria-label="next image" aria-controls="main_li_img">
+          <img src="./images/icon-next.svg" height="18" width="12" alt="">
+        </button>
+      </div>
+      
+    
+      <ul class="thumbnail_li_list">
+        <li>
+          <button class="thumb_li_btn" aria-controls="main_li_img" data-img="1" aria-pressed="true"  aria-label="View product image 1">
+            <img src="./images/image-product-1-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_li_btn" aria-controls="main_li_img" data-img="2" aria-pressed="false"  aria-label="View product image 2">
+            <img src="./images/image-product-2-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_li_btn" aria-controls="main_li_img" data-img="3" aria-pressed="false"  aria-label="View product image 3">
+            <img src="./images/image-product-3-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_li_btn" aria-controls="main_li_img" data-img="4" aria-pressed="false"  aria-label="View product image 4">
+            <img src="./images/image-product-4-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  
+  
+  <!---------main content------------>
+  
+  
+  <main>
+    <!-----loading------------>
+    <section class="loading_container">
+      <div class="loading">
+      </div>
+    </section>
+    
+    <!------img section ----->
+    
+    <div class="product_img_container">
+      <button class="light_button" aria-label="view image in light box" aria-expanded="false" aria-controls="light_box" aria-haspopup="dialog" id="light_btn">
+        <img src="./images/image-product-1.jpg" width="445" height="445" alt="white and light-brown color sneaker" class="main_product_img" id="main_img">
+      </button>
+      <button class="previous_btn change_img_btn" aria-label="previous image" aria-pressed="false">
+        <img src="./images/icon-previous.svg" height="18" width="12" alt="">
+      </button>
+      <button class="next_btn change_img_btn" aria-label="next image" aria-pressed="false">
+        <img src="./images/icon-next.svg" height="18" width="12" alt="">
+      </button>
+      <ul class="thumbnail_list">
+        <li>
+          <button class="thumb_btn" aria-controls="main_img" data-img="1" aria-pressed="true"  aria-label="View product image 1">
+            <img src="./images/image-product-1-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_btn" aria-controls="main_img" data-img="2" aria-pressed="false"  aria-label="View product image 2">
+            <img src="./images/image-product-2-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_btn" aria-controls="main_img" data-img="3" aria-pressed="false"  aria-label="View product image 3">
+            <img src="./images/image-product-3-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+        <li>
+          <button class="thumb_btn" aria-controls="main_img" data-img="4" aria-pressed="false"  aria-label="View product image 4">
+            <img src="./images/image-product-4-thumbnail.jpg" width="88" height="88" alt="">
+          </button>
+        </li>
+      </ul>
+    </div>
+    
+    <!---product information section---->
+    
+    <div class="product_info_container">
+      <div class="product_info_text">
+        <h3 class="brand_name">
+          Sneaker Company
+        </h3>
+        <h1 class="product_name">
+          Fall Limited Edition Sneakers
+        </h1>
+        <p class="product_details">
+          These low-profile sneakers are your perfect casual wear companion. Featuring a 
+          durable rubber outer sole, they’ll withstand everything the weather can offer.
+        </p>
+      </div>
+      
+      <!--- product price and quantity section --->
+      
+      
+      <div class="product_info_price">
+        <div class="price_holder">
+          <h2 class="product_total_price">
+            $125.00
+          </h2>
+          <h3 class="product_discount">
+            50%
+          </h3>
+        </div>
+        <h4 class="product_price">
+          $250.00
+        </h4>
+      </div>
+      <div class="product_order_container">
+        <section class="product_quantity_container" aria-labelledby="qyn_heading">
+          <h3 id="qyn_heading">Quantity section</h3>
+          <button aria-label="decrease item cout" class="minus_btn change_count">
+            <img src="./images/icon-minus.svg" width="12" height="4" alt="" class="minus_img">
+          </button>
+          <span class="item_count" aria-live="polite" aria-atomic="true">0</span>
+          <button aria-label="decrease item cout" class="plus_btn change_count">
+            <img src="./images/icon-plus.svg" width="12" height="12" alt="" class="plus_img">
+          </button>
+        </section>
+        <button aria-label="Add items to cart" class="add_cart_btn">
+          <img src="./images/icon-cart.svg" width="22" height="20" alt="" class="cart_img2">
+          <span aria-hidden="true" >Add to cart</span>
+        </button>
+      </div>
+    </div>
+  </main>
+  
+  <!---------xxxx------>
+  
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Sarthak</a>.
   </div>
+<script src="main.js"></script>
+<script src="https://suger-cdn.vercel.app/suger-dev.js"></script>
 </body>
+
 </html>
