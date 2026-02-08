@@ -1,11 +1,19 @@
 
-let imgNum = 1
-let liImgNum = 1
+let gallaryImg = {
+  "imgNum" : 1,
+  "liImgNum" : 1,
+  "totalImages" : 0,
+  "thumbBtnAll" : [],
+  "thumbLiBtnAll" : []
+}
+let  = 1
+let  = 1
 let itemCountNum = 0
 let productInfo = {}
 let finalProductsInfo = []
 const emptyCartMessage = "Your cart is empty";
 let cartItemCount = 0
+let  = 0
 
 const container = document.querySelector('body');
 const menu = document.querySelector('.nav_wrapper');
@@ -15,12 +23,12 @@ const lightBox = document.querySelector('#light_box');
 const lightBoxBtns = document.querySelectorAll('.light_button');
 const mainImg = document.querySelector('.main_product_img');
 const liMainImg = document.querySelector('.light_box_img');
-const thumbBtnAll = document.querySelectorAll('.thumb_btn');
-const thumbLiBtnAll = document.querySelectorAll('.thumb_li_btn');
 const itemCount = document.querySelector('.item_count');
 const productInCart = document.querySelector('.cart_product');
 const checkoutBtn = document.querySelector('.checkout_btn');
 const cartItems = document.querySelector('.item_count_display');
+const menuBtn = document.querySelector('.menu_button');
+
 
 
 const loadProduct = async () => {
@@ -44,6 +52,34 @@ const loadProduct = async () => {
 function renderPage(product) {
   const text = document.querySelector('.product_info_text');
   const price = document.querySelector('.product_info_price');
+  const thumbList = document.querySelector('.thumbnail_list');
+  const thumbLiList = document.querySelector('.thumbnail_li_list');
+  const thumbSrc = productInfo.productThumbnail
+  gallaryImg.totalImages = thumbSrc.length
+  
+  mainImg.src = productInfo.productMainImage
+  liMainImg.src = productInfo.productMainImage
+  thumbList.innerHTML = ""
+  thumbSrc.forEach((src , index) => {
+    thumbList.innerHTML += 
+        `<li>
+          <button class="thumb_btn" aria-controls="main_img" data-img="${index + 1}" aria-pressed="${index === 0}" aria-label="View product image ${index + 1}">
+            <img src="${src}" width="88" height="88" alt="">
+          </button>
+        </li>`
+  });
+  thumbLiList.innerHTML = ""
+  thumbSrc.forEach((src , index) => {
+    thumbLiList.innerHTML += 
+        `<li>
+          <button class="thumb_li_btn" aria-controls="main_li_img" data-img="${index + 1}" aria-pressed="${index === 0}" aria-label="View product image ${index + 1}">
+            <img src="${src}" width="88" height="88" alt="">
+          </button>
+        </li>`
+  });
+  
+  gallaryImg.thumbLiBtnAll = document.querySelectorAll('.thumb_li_btn');
+  gallaryImg.thumbBtnAll = document.querySelectorAll('.thumb_btn');
   
   text.innerHTML = 
         `<h3 class="brand_name">
@@ -59,19 +95,32 @@ function renderPage(product) {
   price.innerHTML = 
         `<div class="price_holder">
           <h2 class="product_total_price">
-           $${product.productPrice}
+           $${product.productTotalPrice}
           </h2>
           <h3 class="product_discount">
             ${product.productDiscount}
           </h3>
         </div>
         <h4 class="product_price">
-          $${product.productTotalPrice}
+          $${product.productPrice}
         </h4>`
+  
+  const savedCart = localStorage.getItem('cartProduct');
+  if(savedCart){
+    finalProductsInfo = JSON.parse(savedCart)
+    cartItemCount = JSON.parse(localStorage.getItem('totalItems'))
+    insertProductInCart()
+    checkoutBtn.style.display = "inline-block"
+    cartItems.style.display = "inline-block"
+  }else{
+    productInCart.innerHTML = emptyCartMessage
+  }
+  
 }
+
 loadProduct()
 
-function toggleMenu(menuBtn){
+function toggleMenu(){
   const isopen = menuBtn.getAttribute('aria-expanded') === 'true';
   menuBtn.setAttribute('aria-expanded' , !isopen )
   menu.classList.toggle('show_menu')
@@ -94,43 +143,45 @@ function toggleLightBox() {
     btn.setAttribute('aria-expanded', !isopen)
   });
   if(isopen){
-    liMainImg.src = `./images/image-product-1.jpg`;
+    liMainImg.src = productInfo.productMainImage;
   }
   lightBox.classList.toggle('show_light_box')
 }
 
+
+
 function changeImgOnDesk(thumbBtn) {
   const thumbImg = thumbBtn.querySelector('img').src.replace('-thumbnail' , '');
+  console.log(gallaryImg.thumbBtnAll);
   console.log(thumbImg);
   if(thumbImg !== mainImg.src){
-    thumbBtnAll.forEach((btn) => {
+    gallaryImg.thumbBtnAll.forEach((btn) => {
       btn.setAttribute('aria-pressed' , 'false')
     });
-    thumbBtn.setAttribute('aria-pressed' , 'true')
+    thumbBtn.setAttribute('aria-pressed' , 'true');
     mainImg.src = thumbImg;
-    console.log(mainImg.src);
   }
   
 }
 
 function changeImgOnMobile(changeBtn) {
   if(changeBtn.classList.contains('previous_btn')){
-    if(imgNum === 1){
-      imgNum = 4
+    if(gallaryImg.imgNum === 1){
+      gallaryImg.imgNum = 4
     }else{
-      imgNum--
+      gallaryImg.imgNum--
     }
-  }else if(changeBtn.classList.contains('next_btn')){
-    if(imgNum === 4){
-      imgNum = 1
+  }else{
+    if(gallaryImg.imgNum === gallaryImg.totalImages){
+      gallaryImg.imgNum = 1
     }else{
-      imgNum++
+      gallaryImg.imgNum++
     }
   }
-  mainImg.src = `./images/image-product-${imgNum}.jpg`;
-  thumbBtnAll.forEach((btn) => {
+  mainImg.src = `./images/image-product-${gallaryImg.imgNum}.jpg`;
+  gallaryImg.thumbBtnAll.forEach((btn) => {
     
-    if(btn.getAttribute('data-img') === `${imgNum}`){
+    if(btn.getAttribute('data-img') === `${gallaryImg.imgNum}`){
       btn.setAttribute('aria-pressed' , 'true')
     }else{
       btn.setAttribute('aria-pressed', 'false')
@@ -140,21 +191,21 @@ function changeImgOnMobile(changeBtn) {
 
 function changeLightBoxByBtn(changeBtn) {
   if(changeBtn.classList.contains('previous_li_btn')){
-    if(liImgNum === 1){
-      liImgNum = 4
+    if(gallaryImg.liImgNum === 1){
+      gallaryImg.liImgNum = 4
     }else{
-      liImgNum--
+      gallaryImg.liImgNum--
     }
   }else if(changeBtn.classList.contains('next_li_btn')){
-    if(liImgNum === 4){
-      liImgNum = 1
+    if(gallaryImg.liImgNum === gallaryImg.totalImages){
+      gallaryImg.liImgNum = 1
     }else{
-      liImgNum++
+      gallaryImg.liImgNum++
     }
   }
-  liMainImg.src = `./images/image-product-${liImgNum}.jpg`;
-  thumbLiBtnAll.forEach((btn) => {
-    if(btn.getAttribute('data-img') === `${liImgNum}`){
+  liMainImg.src = `./images/image-product-${gallaryImg.liImgNum}.jpg`;
+  gallaryImg.thumbLiBtnAll.forEach((btn) => {
+    if(btn.getAttribute('data-img') === `${gallaryImg.liImgNum}`){
       
       btn.setAttribute('aria-pressed' , 'true')
     }else{
@@ -166,10 +217,10 @@ function changeLightBoxByBtn(changeBtn) {
 function changeLightBoxByThumbBtn(thumbBtn) {
   const thumbImg = thumbBtn.querySelector('img').src.replace('-thumbnail' , '');
   if(thumbImg !== liMainImg.src){
-    thumbLiBtnAll.forEach((btn) => {
+    gallaryImg.thumbLiBtnAll.forEach((btn) => {
       btn.setAttribute('aria-pressed' , 'false')
     });
-    liImgNum = Number(thumbBtn.getAttribute('data-img'));
+    gallaryImg.liImgNum = Number(thumbBtn.getAttribute('data-img'));
     thumbBtn.setAttribute('aria-pressed' , 'true')
     liMainImg.src = thumbImg;
   }
@@ -180,7 +231,7 @@ function changeItemCount(changeBtn) {
     if(itemCountNum !== 0){
       itemCountNum--
     }
-  }else if(changeBtn.classList.contains('plus_btn')){
+  }else{
     if(itemCountNum !== 40){
       itemCountNum++
     }
@@ -198,11 +249,14 @@ function addItemInCart() {
   }
   cartItemCount += itemCountNum
   finalProductsInfo.push(finalProduct)
-  insertProductInCart()
-  if(productInCart.innerHTML !== emptyCartMessage){
+  localStorage.setItem('cartProduct' , JSON.stringify(finalProductsInfo))
+  localStorage.setItem('totalItems' , `${cartItemCount}`)
+  if(productInCart.innerHTML === emptyCartMessage){
     checkoutBtn.style.display = "inline-block"
     cartItems.style.display = "inline-block"
   }
+  insertProductInCart()
+  
 }
 
 function insertProductInCart() {
@@ -228,8 +282,14 @@ function delFinalProduct(delBtn) {
   cartItemCount -= finalProductsInfo[delIndex].productCount
   finalProductsInfo.splice(delIndex , 1);
   if(finalProductsInfo.length !== 0){
+    localStorage.setItem('totalItems' , `${cartItemCount}`)
+    localStorage.setItem('cartProduct' , JSON.stringify(finalProductsInfo))
     insertProductInCart()
-  }else{
+    
+  }else {
+    localStorage.removeItem('cartProduct')
+    localStorage.removeItem('totalItems')
+    
     cartItems.innerHTML = ""
     cartItems.style.display = "none"
     productInCart.innerHTML = emptyCartMessage
@@ -259,7 +319,7 @@ container.addEventListener('click', (event) => {
   }else if(cartBtn.getAttribute('aria-expanded') === 'true'){
     toggleCart()
   }else if (e.closest('.menu_button')) {
-    toggleMenu(e.closest('.menu_button'))
+    toggleMenu()
   }else if(e.closest('.light_button')){
     toggleLightBox()
   }else if(e.closest('.thumb_btn')){
@@ -274,8 +334,21 @@ container.addEventListener('click', (event) => {
     changeItemCount(e.closest('.change_count'))
   }else if(e.closest('.cart_btn')){
     toggleCart()
-  }else if(e.closest('.add_cart_btn')){
+  }else if(e.closest('.add_cart_btn') && itemCountNum !== 0){
     addItemInCart()
   }
   
+});
+
+window.addEventListener('keydown', (e) => {
+  if(e.key !== 'escape'){
+    return ;
+  }
+  if(cartBtn.getAttribute('aria-expanded') === 'true'){
+    toggleCart()
+  }else if(menuBtn.getAttribute('aria-expanded') === 'true'){
+    toggleMenu()
+  }else if(lightBoxBtns[0].getAttribute('aria-expanded') === 'true'){
+    toggleLightBox()
+  }
 });
