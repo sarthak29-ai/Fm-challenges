@@ -207,9 +207,8 @@ img{
   color: var(--Dark-grayish-blue);
   text-decoration-thickness: 1.5px;
 }
-#qyn_heading{
+.visually_hidden{
   position: absolute;
-  visibility: hidden;
   width: 1px;
   height: 1px;
   padding: 0;

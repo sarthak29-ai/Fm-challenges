@@ -197,23 +197,29 @@
       <div class="product_info_price">
         <div class="price_holder">
           <h2 class="product_total_price">
+            <span class="visually_hidden">current price:</span>
             $125.00
           </h2>
           <h3 class="product_discount">
+            <span class="visually_hidden">current discounted:</span>
             50%
           </h3>
         </div>
         <h4 class="product_price">
+          <span class="visually_hidden">original price:</span>
           $250.00
         </h4>
       </div>
       <div class="product_order_container">
         <section class="product_quantity_container" aria-labelledby="qyn_heading">
-          <h3 id="qyn_heading">Quantity section</h3>
+          <h3 class="visually_hidden">Quantity section</h3>
           <button aria-label="decrease item cout" class="minus_btn change_count">
             <img src="./images/icon-minus.svg" width="12" height="4" alt="" class="minus_img">
           </button>
-          <span class="item_count" aria-live="polite" aria-atomic="true">0</span>
+          <span class="item_count" aria-live="polite" aria-atomic="true">
+            <span class="visually_hidden">item count:</span>
+            0
+            </span>
           <button aria-label="decrease item cout" class="plus_btn change_count">
             <img src="./images/icon-plus.svg" width="12" height="12" alt="" class="plus_img">
           </button>
@@ -222,6 +228,7 @@
           <img src="./images/icon-cart.svg" width="22" height="20" alt="" class="cart_img2">
           <span aria-hidden="true" >Add to cart</span>
         </button>
+        <span id="item_added_message" class="visually_hidden" aria-live="aggressive" aria-atomic="true">0 items add in the cart</span>
       </div>
     </div>
   </main>
@@ -234,7 +241,5 @@
     Coded by <a href="#">Sarthak</a>.
   </div>
 <script src="main.js"></script>
-<script src="https://suger-cdn.vercel.app/suger-dev.js"></script>
 </body>
-
 </html>

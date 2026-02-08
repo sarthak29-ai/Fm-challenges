@@ -240,6 +240,7 @@ function changeItemCount(changeBtn) {
 }
 
 function addItemInCart() {
+  const addedMessage = document.querySelector('#item_added_message');
   const totalPrice = productInfo.productTotalPrice * itemCountNum
   const finalProduct = {
     "productName": `${productInfo.productName}`,
@@ -248,6 +249,7 @@ function addItemInCart() {
     "totalPrice": totalPrice
   }
   cartItemCount += itemCountNum
+  addedMessage.textContent = `${itemCountNum} items add in the cart`
   finalProductsInfo.push(finalProduct)
   localStorage.setItem('cartProduct' , JSON.stringify(finalProductsInfo))
   localStorage.setItem('totalItems' , `${cartItemCount}`)
@@ -304,6 +306,8 @@ function finalCheckout() {
   finalProductsInfo.length = 0
   productInCart.innerHTML = emptyCartMessage
   checkoutBtn.style.display = "none"
+  localStorage.removeItem('cartProduct')
+  localStorage.removeItem('totalItems')
 }
 
 
@@ -316,8 +320,12 @@ container.addEventListener('click', (event) => {
     finalCheckout()
   }else if(e.closest('.del_btn')){
     delFinalProduct(e.closest('.del_btn'))
-  }else if(cartBtn.getAttribute('aria-expanded') === 'true'){
+  }else if(cartBtn.getAttribute('aria-expanded') === 'true' && !e.closest('.cart_container')){
     toggleCart()
+  }else if(lightBoxBtns[0].getAttribute('aria-expanded') === 'true' && !e.closest('.li_box_pos')){
+    toggleLightBox()
+  }else if(menuBtn.getAttribute('aria-expanded') === 'true' && !e.closest('.link_wrapper')){
+    toggleMenu()
   }else if (e.closest('.menu_button')) {
     toggleMenu()
   }else if(e.closest('.light_button')){
